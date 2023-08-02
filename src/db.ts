@@ -1,5 +1,11 @@
+import todoDummyData from "./todos.json"
+
 export interface DbItem {
-  // sketch out interface here
+  title: string;
+  description: string;
+  created: string; //format dd-mm-yy
+  due: string; //format dd-mm-yy
+  status: string;
 }
 
 export interface DbItemWithId extends DbItem {
@@ -17,14 +23,9 @@ let idCounter = 0;
  * @param n - the number of items to generate
  * @returns the created items
  */
-export const addDummyDbItems = (n: number): DbItemWithId[] => {
-  const createdSignatures: DbItemWithId[] = [];
-  for (let count = 0; count < n; count++) {
-    const createdSignature = addDbItem({
-      // possibly add some generated data here
-    });
-    createdSignatures.push(createdSignature);
-  }
+export function addDummyDbItems(): DbItemWithId[] {
+  const createdSignatures: DbItemWithId[] = todoDummyData;
+  createdSignatures.forEach(sig => addDbItem(sig));
   return createdSignatures;
 };
 

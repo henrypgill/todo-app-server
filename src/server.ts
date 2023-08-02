@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+
 import {
   addDummyDbItems,
   addDbItem,
@@ -13,7 +14,7 @@ import filePath from "./filePath";
 
 // loading in some dummy items into the database
 // (comment out if desired, or change the number)
-addDummyDbItems(20);
+addDummyDbItems();
 
 const app = express();
 
@@ -34,14 +35,16 @@ app.get("/", (req, res) => {
   res.sendFile(pathToFile);
 });
 
+
+
 // GET /items
-app.get("/items", (req, res) => {
+app.get("/todos", (req, res) => {
   const allSignatures = getAllDbItems();
   res.status(200).json(allSignatures);
 });
 
 // POST /items
-app.post<{}, {}, DbItem>("/items", (req, res) => {
+app.post<{}, {}, DbItem>("/todos", (req, res) => {
   // to be rigorous, ought to handle non-conforming request bodies
   // ... but omitting this as a simplification
   const postData = req.body;
@@ -50,7 +53,7 @@ app.post<{}, {}, DbItem>("/items", (req, res) => {
 });
 
 // GET /items/:id
-app.get<{ id: string }>("/items/:id", (req, res) => {
+app.get<{ id: string }>("/todos/:id", (req, res) => {
   const matchingSignature = getDbItemById(parseInt(req.params.id));
   if (matchingSignature === "not found") {
     res.status(404).json(matchingSignature);
@@ -60,7 +63,7 @@ app.get<{ id: string }>("/items/:id", (req, res) => {
 });
 
 // DELETE /items/:id
-app.delete<{ id: string }>("/items/:id", (req, res) => {
+app.delete<{ id: string }>("/todos/:id", (req, res) => {
   const matchingSignature = getDbItemById(parseInt(req.params.id));
   if (matchingSignature === "not found") {
     res.status(404).json(matchingSignature);
@@ -70,7 +73,7 @@ app.delete<{ id: string }>("/items/:id", (req, res) => {
 });
 
 // PATCH /items/:id
-app.patch<{ id: string }, {}, Partial<DbItem>>("/items/:id", (req, res) => {
+app.patch<{ id: string }, {}, Partial<DbItem>>("/todos/:id", (req, res) => {
   const matchingSignature = updateDbItemById(parseInt(req.params.id), req.body);
   if (matchingSignature === "not found") {
     res.status(404).json(matchingSignature);
