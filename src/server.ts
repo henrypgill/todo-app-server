@@ -35,8 +35,6 @@ app.get("/", (req, res) => {
   res.sendFile(pathToFile);
 });
 
-
-
 // GET /items
 app.get("/todos", (req, res) => {
   const allSignatures = getAllDbItems();

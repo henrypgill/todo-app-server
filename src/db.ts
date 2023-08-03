@@ -1,4 +1,4 @@
-import todoDummyData from "./todos.json"
+import todoDummyData from "./todos.json";
 
 export interface DbItem {
   title: string;
@@ -25,9 +25,9 @@ let idCounter = 0;
  */
 export function addDummyDbItems(): DbItemWithId[] {
   const createdSignatures: DbItemWithId[] = todoDummyData;
-  createdSignatures.forEach(sig => addDbItem(sig));
+  createdSignatures.forEach((sig) => addDbItem(sig));
   return createdSignatures;
-};
+}
 
 /**
  * Adds in a single item to the database
