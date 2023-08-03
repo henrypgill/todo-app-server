@@ -1,16 +1,20 @@
 import todoDummyData from "./todos.json";
+import { ServerToDoData } from "../../todo-app/src/components/ToDoData";
 
-export interface DbItem {
-  title: string;
-  description: string;
-  created: string; //format dd-mm-yy
-  due: string; //format dd-mm-yy
-  status: string;
-}
+// export interface DbItem {
+//   title: string;
+//   description: string;
+//   created: Date
+//   due: Date
+//   status: string;
+// }
 
-export interface DbItemWithId extends DbItem {
-  id: number;
-}
+type DbItem = ServerToDoData;
+
+// export interface DbItemWithId extends DbItem {
+//   id: number;
+// }
+type DbItemWithId = DbItem;
 
 const db: DbItemWithId[] = [];
 
@@ -35,10 +39,10 @@ export function addDummyDbItems(): DbItemWithId[] {
  * @param data - the item data to insert in
  * @returns the item added (with a newly created id)
  */
-export const addDbItem = (data: DbItem): DbItemWithId => {
+export const addDbItem = (data: DbItemWithId): DbItemWithId => {
   const newEntry: DbItemWithId = {
-    id: ++idCounter,
     ...data,
+    id: ++idCounter,
   };
   db.push(newEntry);
   return newEntry;
