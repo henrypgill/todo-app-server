@@ -1,5 +1,5 @@
 import todoDummyData from "./todos.json";
-import { ServerToDoData } from "../../todo-app/src/components/ToDoData";
+// import { ServerToDoData } from "../../todo-app/src/components/ToDoData";
 
 // export interface DbItem {
 //   title: string;
@@ -9,11 +9,29 @@ import { ServerToDoData } from "../../todo-app/src/components/ToDoData";
 //   status: string;
 // }
 
-export type DbItem = ServerToDoData;
-
 // export interface DbItemWithId extends DbItem {
 //   id: number;
 // }
+
+export interface ToDoData {
+  id: number;
+  title: string;
+  description: string;
+  status: string;
+  created: Date; //format dd-mm-yy
+  due: Date; //format dd-mm-yy
+}
+
+export interface ServerToDoData {
+  id: number;
+  title: string;
+  description: string;
+  status: string;
+  created: number[];
+  due: number[];
+}
+
+export type DbItem = ServerToDoData;
 export type DbItemWithId = DbItem;
 
 const db: DbItemWithId[] = [];
