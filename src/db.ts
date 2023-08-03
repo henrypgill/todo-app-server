@@ -9,12 +9,12 @@ import { ServerToDoData } from "../../todo-app/src/components/ToDoData";
 //   status: string;
 // }
 
-type DbItem = ServerToDoData;
+export type DbItem = ServerToDoData;
 
 // export interface DbItemWithId extends DbItem {
 //   id: number;
 // }
-type DbItemWithId = DbItem;
+export type DbItemWithId = DbItem;
 
 const db: DbItemWithId[] = [];
 
