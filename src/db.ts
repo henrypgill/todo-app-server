@@ -1,17 +1,4 @@
-import todoDummyData from "./todos.json";
-// import { ServerToDoData } from "../../todo-app/src/components/ToDoData";
-
-// export interface DbItem {
-//   title: string;
-//   description: string;
-//   created: Date
-//   due: Date
-//   status: string;
-// }
-
-// export interface DbItemWithId extends DbItem {
-//   id: number;
-// }
+import { createDummyTodos } from "./dummyData";
 
 export interface ToDoData {
   id: number;
@@ -27,8 +14,8 @@ export interface ServerToDoData {
   title: string;
   description: string;
   status: string;
-  created: number[];
-  due: number[];
+  created: number;
+  due: number;
 }
 
 export type DbItem = ServerToDoData;
@@ -46,7 +33,8 @@ let idCounter = 0;
  * @returns the created items
  */
 export function addDummyDbItems(): DbItemWithId[] {
-  const createdSignatures: DbItemWithId[] = todoDummyData;
+  const createdSignatures: DbItemWithId[] = createDummyTodos(idCounter);
+  idCounter = createdSignatures[createdSignatures.length - 1].id;
   createdSignatures.forEach((sig) => addDbItem(sig));
   return createdSignatures;
 }
@@ -60,7 +48,6 @@ export function addDummyDbItems(): DbItemWithId[] {
 export const addDbItem = (data: DbItemWithId): DbItemWithId => {
   const newEntry: DbItemWithId = {
     ...data,
-    id: ++idCounter,
   };
   db.push(newEntry);
   return newEntry;
