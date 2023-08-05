@@ -9,6 +9,7 @@ import {
   getDbItemById,
   DbItem,
   updateDbItemById,
+  deleteDbItemById,
 } from "./db";
 import filePath from "./filePath";
 
@@ -62,7 +63,7 @@ app.get<{ id: string }>("/todos/:id", (req, res) => {
 
 // DELETE /items/:id
 app.delete<{ id: string }>("/todos/:id", (req, res) => {
-  const matchingSignature = getDbItemById(parseInt(req.params.id));
+  const matchingSignature = deleteDbItemById(parseInt(req.params.id));
   if (matchingSignature === "not found") {
     res.status(404).json(matchingSignature);
   } else {
