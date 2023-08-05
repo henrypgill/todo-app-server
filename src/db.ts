@@ -66,6 +66,10 @@ export const addDbItem = (data: DbItemWithId): DbItemWithId => {
   return newEntry;
 };
 
+export const getNextIdCounter = () => {
+  return idCounter + 1;
+};
+
 /**
  * Deletes a database item with the given id
  *

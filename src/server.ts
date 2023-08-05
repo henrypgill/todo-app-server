@@ -10,6 +10,8 @@ import {
   DbItem,
   updateDbItemById,
   deleteDbItemById,
+  getNextIdCounter,
+  DbItemWithId,
 } from "./db";
 import filePath from "./filePath";
 
@@ -43,7 +45,7 @@ app.get("/todos", (req, res) => {
 });
 
 // POST /items
-app.post<{}, {}, DbItem>("/todos", (req, res) => {
+app.post<{}, {}, DbItemWithId>("/todos", (req, res) => {
   // to be rigorous, ought to handle non-conforming request bodies
   // ... but omitting this as a simplification
   const postData = req.body;
@@ -59,6 +61,10 @@ app.get<{ id: string }>("/todos/:id", (req, res) => {
   } else {
     res.status(200).json(matchingSignature);
   }
+});
+
+app.get("/todos/nextid", (req, res) => {
+  res.json({ id: getNextIdCounter() });
 });
 
 // DELETE /items/:id
