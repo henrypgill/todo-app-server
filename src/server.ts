@@ -63,7 +63,7 @@ app.get<{ id: string }>("/todos/:id", (req, res) => {
   }
 });
 
-app.get("/todos/nextid", (req, res) => {
+app.get("/nextid", (req, res) => {
   res.json({ id: getNextIdCounter() });
 });
 
