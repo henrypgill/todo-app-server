@@ -1,3 +1,7 @@
 .env
 dist
 node_modules
+
+server_non_sql.ts
+dummyData.ts
+db.ts
