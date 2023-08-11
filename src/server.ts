@@ -3,9 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { Client } from "pg";
 
-import { DbItem, getNextIdCounter, DbItemWithId, ServerToDoData } from "./db";
+import { DbItem, getNextIdCounter, DbItemWithId } from "./db";
 import filePath from "./filePath";
-import { createDummyTodos } from "./dummyData";
 import { getDbClientConfig } from "./clientConfig";
 console.log("server is starting");
 // read in contents of any environment variables in the .env file
