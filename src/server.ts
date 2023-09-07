@@ -10,10 +10,6 @@ console.log("server is starting");
 // read in contents of any environment variables in the .env file
 dotenv.config();
 
-// const config = {
-//   connectionString: process.env.PGCONNECTION_STRING,
-//   ssl: { rejectUnauthorized: false }}
-
 const config = getDbClientConfig();
 
 /** Parses JSON data in a request automatically */
